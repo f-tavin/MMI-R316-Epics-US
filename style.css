@@ -89,6 +89,21 @@ h3 {
   color: var(--text);
 }
 
+h4 {
+  margin: 18px 0 6px;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.note {
+  padding: 10px 16px;
+  border-left: 3px solid var(--accent);
+  background: var(--bg);
+  font-size: 15px;
+}
+
 p {
   margin: 0 0 14px;
   text-align: justify;

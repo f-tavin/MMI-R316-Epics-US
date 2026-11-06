@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Initiatives, Epics et User Stories</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="document">
+    <header class="cover">
+      <div class="cover-title">
+        <h1>Initiatives, Epics et User Stories</h1>
+      </div>
+    </header>
+
+    <section>
+      <h2>Objectifs</h2>
+      <p>Nous allons pendant cette séance apprendre à découper les fonctionnalités d’une expression du besoin en thématiques puis en tâches. Ce découpage est essentiel pour une bonne gestion de projet car il permet de réaliser plus facilement le chiffrage, la planification mais aussi le suivi de la réalisation et la livraison.</p>
+      <p>L’intégralité du travail réalisé lors de cette séance devra être compilée dans un document doté d’une table des matières et d’un chapitrage cohérent et exporté au format pdf. Nous verrons dans une prochaine séance comment ces éléments seront exploités avec un outil de suivi de la réalisation.</p>
+    </section>
+
+    <section>
+      <h2>Mise en situation</h2>
+      <p>Vous travaillez pour une néo-banque dans le cadre du lancement de son application mobile permettant aux clients de réaliser toutes les opérations dont ils peuvent avoir besoin. Vous trouverez sur Moodle un premier document nommé “Expression du besoin” qui présente dans les grandes lignes ce que devra permettre l’application et ce qui est prévu en termes de communication autour de son lancement.</p>
+    </section>
+
+    <section>
+      <h2>Niveaux de découpage</h2>
+      <p>Le but de notre démarche d’analyse va être d’identifier des User Stories (US), c’est-à-dire des cas d’usage de l’utilisateur final ainsi que les exigences qui ont été identifiées de sa part. Ces US seront regroupées par thématiques et on appelle ces thématiques des Epics. Enfin, sur des projets d’ampleur ou bien lorsque le projet présente des aspects très différents, on peut séparer les Epics en plusieurs Initiatives.</p>
+    </section>
+
+    <section>
+      <h2>Identifier les Initiatives</h2>
+      <p>À partir de l’expression du besoin, tentez d’identifier les deux Initiatives. Pour la suite de la séance, vous vous concentrerez sur l’Initiative qui correspond le plus à votre choix de parcours.</p>
+    </section>
+
+    <section>
+      <h2>Identification des personas</h2>
+      <p>À partir de l’expression du besoin, tentez de lister les profils types des cibles de votre Initiative. Pour chaque, créez un·e persona en lui donnant une identité, une photo, et un court descriptif. Le but de ce descriptif est de rendre la personne facilement identifiable tout en mettant en avant ce qui définit son profil utilisateur. Des exemples de personas sont donnés dans le CM (diapo 13).</p>
+    </section>
+
+    <section>
+      <h2>Détermination des thématiques (Epics)</h2>
+      <p>Toujours à partir de l’expression du besoin et afin de préparer les ateliers clients de la phase d’analyse, identifiez les grandes thématiques de votre Initiative. Si l’on prend l’exemple d’un site de vente en ligne, on peut imaginer les thématiques “Gestion du panier”, “Fiche produit”, “Recherche de produit”, “Gestion du compte client”, … Pour la réalisation d’une campagne de communication, on peut imaginer les thématiques “charte graphique”, “spot vidéo”, “partenariats”, …</p>
+      <p>Ce découpage permet de réaliser une première macro-séparation des tâches à réaliser. Il faut s’assurer que les groupes de tâches ainsi créés sont suffisamment indépendants pour pouvoir être réalisés séparément, c’est-à-dire par des équipes distinctes et/ou sur des temporalités différentes. Si ce n’est pas le cas, on peut préciser les dépendances et on essaie de placer en premier les éléments prioritaires.</p>
+      <p>Pour chaque thématique identifiée dans votre Initiative, rédigez une Epic en respectant la forme indiquée ci-dessous.</p>
+
+      <h3>Forme d’une Epic</h3>
+      <p>Chaque Epic est identifiée par un code (souvent un code pour l’initiative suivi d’un numéro) et un intitulé clair. Un court texte rappelle l’ensemble des fonctionnalités embarquées.</p>
+    </section>
+
+    <section>
+      <h2>Déterminer les cas d’usage (User Stories)</h2>
+      <p>Une fois les grandes thématiques identifiées, des ateliers sont mis en place avec le client pour détailler les cas d’usages prévus dans l’expression du besoin. Cette phase est cruciale car elle vise à préparer le travail de réalisation. En effet, pour que les personnes en charge de celle-ci n’aient pas à se poser de questions d’ordre fonctionnel, les informations contenues dans les User Stories doivent être complètes et non ambiguës.</p>
+      <p>À partir du compte-rendu de l’atelier client correspondant à la thématique retenue comme exemple pour votre Initiative, rédigez les User Stories de tous les cas d’usage identifiés en suivant la forme indiquée ci-dessous. Ne pas oublier qu’une User Story doit correspondre à un besoin utilisateur. Ainsi “Créer l’UI de la gestion du panier” n’est pas une User Story valide alors que “Suppression d’un article du panier” ou “Validation du panier” en sont.</p>
+
+      <h3>Forme d’une User Story</h3>
+      <p class="note">Note : des exemples d’US simples sont donnés dans le CM (diapos 15 et 16).</p>
+
+      <h4>Identification</h4>
+      <p>Chaque User Story est identifiée par un code (souvent les lettres US suivies d’un numéro) et un intitulé clair. Le code et l’intitulé sont censés être uniques. Pour plus de clarté, on peut réaliser une numérotation relative en faisant précéder le numéro de l’US de celui de l’EPIC correspondante suivie d’un tiret, par exemple : APP-03-7 est l’US 7 de l’EPIC 3 de l’Initiative APP (Application).</p>
+
+      <h4>Accroche</h4>
+      <p>La description de l’US commence traditionnellement par une accroche de la forme “En tant que ... je peux … afin de …”. Cette phrase permet de résumer rapidement qui est la cible finale et ce que lui apporte le cas d’usage et de quelle manière.</p>
+
+      <h4>Détails</h4>
+      <p>On indique ensuite tout ce qu’il est nécessaire de savoir sur cette fonctionnalité. On trouve toujours à minima du texte, parfois accompagné d’illustrations explicatives ou de maquettes. Plus ce texte est détaillé et précis, mieux devrait se passer la phase de réalisation.</p>
+    </section>
+  </main>
+</body>
+</html>
