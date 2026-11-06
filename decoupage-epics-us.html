@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grisbi2B – Epics et User Stories</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="replis.js" defer></script>
+</head>
+<body>
+  <main class="document">
+    <header class="cover">
+      <div class="cover-title">
+        <p class="cover-label">Projet</p>
+        <h1>Grisbi2B</h1>
+        <p class="cover-subtitle">Découpage en Initiatives, Epics et User Stories</p>
+      </div>
+      <div class="cover-summary">
+        <h2>Résumé</h2>
+        <p>Epics des initiatives DEV et CREA, et User Stories des Epics DEV-05 (Cartes bancaires) et CREA-03 (Spot vidéo)</p>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <button type="button" data-action="open-groups">Déplier les Epics</button>
+      <button type="button" data-action="open-all">Tout déplier</button>
+      <button type="button" data-action="close-all">Tout replier</button>
+    </div>
+
+    <!-- ===================== INITIATIVE DEV ===================== -->
+    <section class="group initiative">
+      <button class="toggle" type="button" aria-expanded="false"><span class="code">DEV</span> Application mobile</button>
+      <div class="group-content" hidden>
+
+        <section class="group epic">
+          <button class="toggle" type="button" aria-expanded="false"><span class="code">DEV-01</span> Authentification et sécurité</button>
+          <div class="group-content" hidden>
+            <p class="epic-description">Connexion à l’application, authentification à deux facteurs et validation des actions sensibles par une authentification forte.</p>
+            <p class="empty">User Stories à définir lors d’un atelier client.</p>
+          </div>
+        </section>
+
+        <section class="group epic">
+          <button class="toggle" type="button" aria-expanded="false"><span class="code">DEV-02</span> Gestion des accès</button>
+          <div class="group-content" hidden>
+            <p class="epic-description">Ouverture et gestion d’accès secondaires, principalement en consultation, pour des tiers comme l’expert-comptable.</p>
+            <p class="empty">User Stories à définir lors d’un atelier client.</p>
+          </div>
+        </section>
+
+        <section class="group epic">
+          <button class="toggle" type="button" aria-expanded="false"><span class="code">DEV-03</span> Comptes et opérations</button>
+          <div class="group-content" hidden>
+            <p class="epic-description">Consultation de la liste des comptes de l’entreprise et de l’historique des opérations de chaque compte.</p>
+            <p class="empty">User Stories à définir lors d’un atelier client.</p>
+          </div>
+        </section>
+
+        <section class="group epic">
+          <button class="toggle" type="button" aria-expanded="false"><span class="code">DEV-04</span> Virements</button>
+          <div class="group-content" hidden>
+            <p class="epic-description">Consultation de l’historique des virements et réalisation de nouveaux virements.</p>
+            <p class="empty">User Stories à définir lors d’un atelier client.</p>
+          </div>
+        </section>
+
+        <!-- ===== DEV-05 ===== -->
+        <section class="group epic">
+          <button class="toggle" type="button" aria-expanded="false"><span class="code">DEV-05</span> Cartes bancaires</button>
+          <div class="group-content" hidden>
+            <p class="epic-description">Consultation des cartes, gestion des plafonds, verrouillage, opposition et accès à la documentation des cartes.</p>
+            <div class="note">
+              <p><strong>Exigences communes à toutes les US de cette Epic (Definition of Done) :</strong></p>
+              <ul>
+                <li>les droits de chaque profil sont respectés ; une option non autorisée n’est pas affichée (elle n’est pas grisée) ;</li>
+                <li>l’authentification forte suit les règles de l’Epic DEV-01 : biométrie ou code à 6 chiffres, valable pour la seule action demandée, action annulée après 3 échecs, déconnexion après 5 échecs dans la journée ;</li>
+                <li>sans connexion, l’écran affiche « Connexion impossible. Vérifiez votre connexion internet. » et un bouton « Réessayer » ; aucune information de carte n’est conservée sur le téléphone ;</li>
+                <li>en cas d’échec d’une action, l’écran revient à son état précédent et affiche « L’opération n’a pas pu être réalisée. Réessayez dans quelques instants. » ;</li>
+                <li>après 5 minutes sans action, l’utilisateur est déconnecté et renvoyé à l’écran de connexion ;</li>
+                <li>fonctionnement sur iOS 17+ et Android 11+ ; en 4G, vue principale affichée en moins de 2 s et actions confirmées en moins de 3 s ;</li>
+                <li>toute action sensible est enregistrée côté serveur (date, heure, utilisateur, carte) ;</li>
+                <li>chaque élément est utilisable avec VoiceOver et TalkBack, respecte la taille de police du téléphone, et aucune information n’est portée uniquement par la couleur.</li>
+              </ul>
+            </div>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-1</span> Accéder aux cartes depuis le menu principal</h4>
+              <p class="accroche">En tant que porteur de carte, je peux accéder à mes cartes depuis le menu principal afin de les gérer à tout moment.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>Une icône « Cartes » figure parmi les icônes du menu principal, en haut de l’écran. Elle est accessible depuis n’importe quelle partie de l’application.</li>
+                  <li>Ouverte depuis le menu, la gestion des cartes affiche la première carte du carrousel, selon l’ordre défini dans DEV-05-3.</li>
+                  <li>Si l’utilisateur n’a accès à aucune carte, l’écran affiche uniquement le message « Aucune carte n’est associée à votre accès ».</li>
+                  <li>L’icône est présente pour les trois profils (titulaire, collaborateur, expert-comptable) ; le contenu affiché dépend ensuite de leurs droits.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-2</span> Accéder à une carte depuis une opération</h4>
+              <p class="accroche">En tant que porteur de carte, je peux ouvrir la carte utilisée pour une opération depuis l’historique d’un compte afin d’agir rapidement si l’opération me semble suspecte.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>Dans l’historique d’un compte (Epic DEV-03), chaque opération réalisée par carte bancaire affiche une icône de carte.</li>
+                  <li>Un appui sur cette icône ouvre la gestion des cartes avec la carte concernée directement sélectionnée dans le carrousel.</li>
+                  <li>L’icône n’est pas affichée si la carte est expirée depuis plus de 90 jours, ou si l’utilisateur n’a pas le droit de voir cette carte (un collaborateur ne voit que ses propres cartes).</li>
+                </ul>
+                <p><strong>Dépendance :</strong> nécessite l’affichage de l’historique des opérations (DEV-03).</p>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-3</span> Parcourir ses cartes</h4>
+              <p class="accroche">En tant que porteur de plusieurs cartes, je peux passer d’une carte à l’autre par un swipe latéral afin de retrouver facilement celle qui m’intéresse.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>Un carrousel en haut de la page présente les cartes ; un swipe latéral permet de passer à la carte précédente ou suivante.</li>
+                  <li>Des points sous le carrousel indiquent le nombre de cartes et la position de la carte affichée.</li>
+                  <li>Ordre des cartes : d’abord celles de l’utilisateur connecté, puis les autres cartes de l’entreprise par ordre alphabétique du nom du porteur. Les cartes en opposition sont toujours placées en fin de liste.</li>
+                  <li>Les informations et les opérations affichées sous le carrousel correspondent toujours à la carte sélectionnée.</li>
+                  <li>Changer de carte masque à nouveau le numéro et la date de validité s’ils étaient affichés en clair (voir DEV-05-8).</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-4</span> Voir les cartes de l’entreprise</h4>
+              <p class="accroche">En tant que dirigeant, je peux voir et gérer les cartes de tous mes collaborateurs afin de garder le contrôle sur les moyens de paiement de l’entreprise.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>Le titulaire du compte voit toutes les cartes de l’entreprise dans le carrousel.</li>
+                  <li>Sur toutes les cartes, il peut consulter les plafonds, les augmenter temporairement, verrouiller ou déverrouiller la carte, faire opposition et consulter la documentation.</li>
+                  <li>Sur les cartes de ses collaborateurs, l’icône d’affichage en clair et l’option d’affichage du code secret ne sont pas affichées : ces informations restent réservées au porteur.</li>
+                  <li>Un collaborateur porteur de carte ne voit que ses propres cartes.</li>
+                  <li>Toute action du dirigeant sur la carte d’un collaborateur déclenche une notification au porteur, indiquant le nom du dirigeant (voir DEV-05-19).</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-5</span> Consulter les cartes en lecture seule</h4>
+              <p class="accroche">En tant qu’expert-comptable, je peux consulter les cartes et les plafonds de l’entreprise afin de suivre les dépenses de mon client sans pouvoir agir dessus.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>L’utilisateur secondaire voit toutes les cartes de l’entreprise dans le carrousel, avec leurs informations masquées.</li>
+                  <li>Il peut consulter les plafonds (vue principale et vue détaillée) et la documentation des cartes.</li>
+                  <li>Les éléments suivants ne lui sont pas affichés : icône d’affichage en clair, affichage du code secret, bouton d’augmentation des plafonds, switchs de verrouillage et bouton d’opposition.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-6</span> Identifier une carte</h4>
+              <p class="accroche">En tant que porteur de carte, je peux voir le visuel, le nom du porteur et les derniers chiffres de chaque carte afin de savoir de quelle carte il s’agit sans exposer ses données.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>Chaque carte est représentée par un visuel évoquant le support physique : bleu pour la carte Business Essentiel, noir pour la carte Business Premium. Le logo Grisbi2B et le logo du réseau de paiement figurent sur le visuel.</li>
+                  <li>Sous le visuel sont affichés le nom du porteur, le numéro de carte et la date de fin de validité.</li>
+                  <li>Par défaut, le numéro n’affiche que ses 4 derniers chiffres (•••• •••• •••• 1234) et la date est entièrement masquée (••/••).</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-7</span> Connaître le statut d’une carte</h4>
+              <p class="accroche">En tant que porteur de carte, je peux voir si une carte est verrouillée, en opposition ou bientôt expirée afin de savoir immédiatement si je peux l’utiliser.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <p>Le statut est affiché sous forme de badge au-dessus du visuel de la carte :</p>
+                <div class="table-wrap">
+                  <table>
+                    <thead><tr><th>Statut</th><th>Condition</th><th>Affichage</th></tr></thead>
+                    <tbody>
+                      <tr><td>Active</td><td>Cas normal</td><td>Aucun badge</td></tr>
+                      <tr><td>Expire bientôt</td><td>Fin de validité dans moins de 60 jours</td><td>Badge orange « Expire bientôt »</td></tr>
+                      <tr><td>Verrouillée</td><td>Verrouillage temporaire activé</td><td>Visuel grisé, badge « Verrouillée » avec un cadenas</td></tr>
+                      <tr><td>En opposition</td><td>Opposition réalisée</td><td>Visuel grisé, badge rouge « En opposition »</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <ul>
+                  <li>Une carte en opposition reste visible 90 jours dans le carrousel, puis disparaît.</li>
+                  <li>Sur une carte en opposition, seules la consultation de la documentation et la commande d’une carte de remplacement restent disponibles.</li>
+                  <li>Le statut est toujours écrit en toutes lettres dans le badge, et pas seulement signalé par une couleur.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-8</span> Afficher le numéro et la date en clair</h4>
+              <p class="accroche">En tant que porteur de carte, je peux afficher et copier le numéro complet et la date de validité de ma carte afin de payer en ligne sans avoir ma carte physique.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>Une icône en forme d’œil, à côté des informations masquées, déclenche une authentification forte.</li>
+                  <li>Après authentification, le numéro complet et la date de validité s’affichent.</li>
+                  <li>Ils sont à nouveau masqués après 30 secondes, ou dès que l’utilisateur quitte l’écran ou change de carte.</li>
+                  <li>Tant que le numéro est visible, un bouton permet de le copier ; un message « Numéro copié » confirme l’action.</li>
+                  <li>Droits : le titulaire uniquement pour ses propres cartes, le collaborateur pour ses cartes, jamais l’expert-comptable.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-9</span> Afficher le code secret</h4>
+              <p class="accroche">En tant que porteur de carte, je peux afficher mon code secret de façon sécurisée afin de le retrouver si je l’ai oublié.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>Une option de la vue principale demande l’affichage du code secret, ce qui déclenche une authentification forte.</li>
+                  <li>Le code s’affiche sur une nouvelle vue, en grands caractères, pendant 6 secondes, avec un compte à rebours visible.</li>
+                  <li>À la fin du délai, le code est masqué et un bouton « Afficher à nouveau » permet de le réafficher 6 secondes de plus.</li>
+                  <li>Pendant les 2 minutes qui suivent l’authentification, ce bouton ne redemande pas d’authentification ; au-delà, il en demande une nouvelle.</li>
+                  <li>Les captures d’écran sont bloquées sur cette vue, et le code est immédiatement masqué si l’application passe en arrière-plan.</li>
+                  <li>Un bouton en haut de la vue permet de revenir à la vue principale.</li>
+                  <li>Droits : le titulaire uniquement pour ses propres cartes, le collaborateur pour ses cartes, jamais l’expert-comptable.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-10</span> Consulter les plafonds principaux</h4>
+              <p class="accroche">En tant que porteur de carte, je peux voir où j’en suis de mes plafonds de paiement et de retrait en France afin d’éviter un refus de paiement.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>Une option de la vue principale ouvre la vue des plafonds, qui présente deux plafonds : paiements en France et retraits en France.</li>
+                  <li>Chaque plafond est représenté par une jauge, sous laquelle sont indiqués le montant utilisé, le plafond et la période (exemple : « 1 250 € utilisés sur 3 000 € – 30 jours glissants »).</li>
+                  <li>Couleur de la jauge selon le taux d’utilisation : verte en dessous de 70 %, orange entre 70 et 90 %, rouge au-delà de 90 %.</li>
+                  <li>Lue par un lecteur d’écran, la jauge énonce le montant utilisé et le plafond.</li>
+                  <li>Un bouton en haut de la vue permet de revenir à la vue principale ; un bouton sous les jauges ouvre la vue détaillée (DEV-05-11) ; un bouton en bas propose l’augmentation temporaire (DEV-05-12), selon les droits.</li>
+                  <li>Accessible aux trois profils.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-11</span> Consulter le détail des plafonds</h4>
+              <p class="accroche">En tant que porteur de carte, je peux voir l’ensemble de mes plafonds, en France et à l’étranger, afin de préparer un déplacement.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <p>La vue détaillée présente les quatre plafonds de la carte, avec les mêmes jauges que la vue principale. Valeurs par défaut :</p>
+                <div class="table-wrap">
+                  <table>
+                    <thead><tr><th>Plafond</th><th>Période</th><th>Business Essentiel</th><th>Business Premium</th></tr></thead>
+                    <tbody>
+                      <tr><td>Paiements en France</td><td>30 jours glissants</td><td class="nowrap">3 000 €</td><td class="nowrap">10 000 €</td></tr>
+                      <tr><td>Retraits en France</td><td>7 jours glissants</td><td class="nowrap">500 €</td><td class="nowrap">1 500 €</td></tr>
+                      <tr><td>Paiements à l’étranger</td><td>30 jours glissants</td><td class="nowrap">1 500 €</td><td class="nowrap">5 000 €</td></tr>
+                      <tr><td>Retraits à l’étranger</td><td>7 jours glissants</td><td class="nowrap">300 €</td><td class="nowrap">1 000 €</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <ul>
+                  <li>Un bouton en haut de la vue permet de revenir à la vue précédente.</li>
+                  <li>Un bouton en bas propose l’augmentation temporaire des plafonds (DEV-05-12), selon les droits.</li>
+                  <li>Accessible aux trois profils.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-12</span> Augmenter temporairement les plafonds</h4>
+              <p class="accroche">En tant que dirigeant, je peux augmenter temporairement les plafonds d’une carte afin de faire face à une dépense exceptionnelle.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>Le bouton d’augmentation, en bas des vues de plafonds, n’est affiché qu’au titulaire du compte.</li>
+                  <li>Il ouvre une vue proposant deux niveaux : +50 % ou +100 %, appliqués à l’ensemble des plafonds de la carte.</li>
+                  <li>Cette vue rappelle le nombre d’augmentations encore possibles sur l’année civile (3 au maximum) et indique que l’augmentation durera 30 jours.</li>
+                  <li>Un bouton en haut permet d’annuler ; un bouton en bas permet de confirmer, après authentification forte.</li>
+                  <li>Après confirmation, l’application revient à la vue des plafonds, qui affiche les nouveaux montants. L’augmentation s’applique immédiatement et prend fin automatiquement au bout de 30 jours.</li>
+                  <li>Une seule augmentation peut être active à la fois : pendant ce temps, le bouton est remplacé par le texte « Augmentation active jusqu’au JJ/MM/AAAA ».</li>
+                  <li>Quand les 3 augmentations de l’année ont été utilisées, le bouton est désactivé et accompagné du message « Vous avez utilisé vos 3 augmentations pour cette année ».</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-13</span> Verrouiller temporairement la carte</h4>
+              <p class="accroche">En tant que porteur de carte, je peux verrouiller et déverrouiller ma carte en un geste afin de la protéger quand je ne sais plus où elle est.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>La vue principale propose un toggle switch « Verrouiller la carte », qui bloque toutes les opérations de la carte.</li>
+                  <li>L’effet est immédiat. Activer le verrouillage ne demande pas d’authentification ; le désactiver demande une authentification forte.</li>
+                  <li>Chaque changement est confirmé par un court message en bas de l’écran : « Carte verrouillée » ou « Carte déverrouillée ».</li>
+                  <li>Carte verrouillée : le visuel passe au statut « Verrouillée » (DEV-05-7), et les deux switchs de blocage partiel sont désactivés et grisés. Ils conservent leur position, qui s’applique de nouveau au déverrouillage.</li>
+                  <li>En cas d’échec, le switch reprend sa position initiale.</li>
+                  <li>Droits : titulaire (toutes les cartes) et collaborateur (ses cartes) ; non affiché pour l’expert-comptable.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-14</span> Bloquer les paiements à distance</h4>
+              <p class="accroche">En tant que porteur de carte, je peux bloquer uniquement les paiements à distance afin de limiter les risques de fraude en ligne tout en continuant à payer en magasin.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>La vue principale propose un toggle switch « Bloquer les paiements à distance », qui bloque uniquement les paiements sur internet, par téléphone et les abonnements liés à la carte.</li>
+                  <li>L’effet est immédiat. L’activation ne demande pas d’authentification ; la désactivation demande une authentification forte.</li>
+                  <li>Chaque changement est confirmé par un court message en bas de l’écran.</li>
+                  <li>Le switch est désactivé et grisé lorsque la carte est entièrement verrouillée (DEV-05-13).</li>
+                  <li>En cas d’échec, le switch reprend sa position initiale.</li>
+                  <li>Mêmes droits que le verrouillage.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-15</span> Bloquer l’utilisation à l’étranger</h4>
+              <p class="accroche">En tant que porteur de carte, je peux bloquer les paiements et retraits à l’étranger afin d’éviter une utilisation frauduleuse hors de France.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>La vue principale propose un toggle switch « Bloquer l’étranger », qui bloque uniquement les paiements et retraits à l’étranger.</li>
+                  <li>L’effet est immédiat. L’activation ne demande pas d’authentification ; la désactivation demande une authentification forte.</li>
+                  <li>Chaque changement est confirmé par un court message en bas de l’écran.</li>
+                  <li>Le switch est désactivé et grisé lorsque la carte est entièrement verrouillée (DEV-05-13).</li>
+                  <li>En cas d’échec, le switch reprend sa position initiale.</li>
+                  <li>Mêmes droits que le verrouillage.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-16</span> Faire opposition</h4>
+              <p class="accroche">En tant que porteur de carte, je peux faire opposition sur ma carte afin de la neutraliser définitivement en cas de perte, de vol ou de fraude.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <p>Un bouton rouge « Faire opposition », placé sous les switchs, lance un parcours en quatre étapes :</p>
+                <ol>
+                  <li><strong>Rappel :</strong> une fenêtre rappelle que l’opposition est définitive et qu’un verrouillage temporaire est possible. Deux boutons : « Verrouiller plutôt » (active le verrouillage et ferme la fenêtre) et « Continuer l’opposition ».</li>
+                  <li><strong>Motif :</strong> choix entre perte, vol et utilisation frauduleuse. Pour un vol ou une utilisation frauduleuse, un message rappelle qu’il faut déposer plainte.</li>
+                  <li><strong>Authentification forte.</strong></li>
+                  <li><strong>Confirmation :</strong> une vue indique la date, l’heure et le numéro de référence de l’opposition. La carte passe au statut « En opposition ».</li>
+                </ol>
+                <ul>
+                  <li>En cas d’échec, en plus du message d’erreur, un bouton ouvre la messagerie de l’application avec un message pré-rempli indiquant la carte concernée, et le numéro de téléphone du service d’opposition est affiché.</li>
+                  <li>Droits : titulaire (toutes les cartes) et collaborateur (ses cartes) ; non affiché pour l’expert-comptable.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-17</span> Commander une carte de remplacement</h4>
+              <p class="accroche">En tant que porteur d’une carte en opposition, je peux commander une nouvelle carte afin de retrouver rapidement un moyen de paiement.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>La vue de confirmation de l’opposition propose de commander une carte de remplacement, de la même gamme que la carte en opposition.</li>
+                  <li>Elle rappelle l’adresse de l’entreprise, à laquelle la carte sera envoyée (non modifiable ici), et le délai de réception de 5 jours ouvrés. La commande est gratuite.</li>
+                  <li>Si l’utilisateur choisit « Plus tard », un bouton « Commander une carte de remplacement » reste disponible sur la carte en opposition, pendant les 90 jours où elle reste visible.</li>
+                </ul>
+                <p><strong>Dépendance :</strong> nécessite DEV-05-16.</p>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-18</span> Consulter la documentation de la carte</h4>
+              <p class="accroche">En tant que porteur de carte, je peux accéder aux garanties, aux caractéristiques et à la FAQ de ma carte afin de trouver une réponse sans contacter la banque.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>Trois liens en bas de page : « Assurance et assistance » et « Caractéristiques de la carte » (documents PDF propres à la gamme de la carte), et « Questions fréquentes » (page du site de Grisbi2B).</li>
+                  <li>Les PDF s’ouvrent dans une visionneuse intégrée, avec un bouton de partage pour les enregistrer ou les envoyer.</li>
+                  <li>La page de questions fréquentes s’ouvre dans un navigateur intégré, sans quitter l’application.</li>
+                  <li>Accessible aux trois profils, y compris sur une carte en opposition.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">DEV-05-19</span> Être notifié des actions sur ma carte</h4>
+              <p class="accroche">En tant que porteur de carte, je peux être prévenu de chaque événement important concernant ma carte afin de repérer tout changement que je n’ai pas fait moi-même.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <p>Le porteur reçoit une notification sur son téléphone dans les cas suivants :</p>
+                <ul>
+                  <li>verrouillage ou déverrouillage de la carte, activation ou désactivation d’un blocage partiel ;</li>
+                  <li>opposition sur la carte ;</li>
+                  <li>début d’une augmentation temporaire des plafonds, puis 3 jours avant sa fin ;</li>
+                  <li>plafond utilisé à plus de 90 % (une seule notification par période) ;</li>
+                  <li>carte expirant dans 60 jours.</li>
+                </ul>
+                <p>Si l’action a été réalisée par un autre utilisateur que le porteur (par exemple le dirigeant), la notification indique le nom de cet utilisateur.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="group epic">
+          <button class="toggle" type="button" aria-expanded="false"><span class="code">DEV-06</span> Contact et messagerie</button>
+          <div class="group-content" hidden>
+            <p class="epic-description">Accès aux coordonnées de la banque et échanges avec elle via une messagerie intégrée.</p>
+            <p class="empty">User Stories à définir lors d’un atelier client.</p>
+          </div>
+        </section>
+
+        <section class="group epic">
+          <button class="toggle" type="button" aria-expanded="false"><span class="code">DEV-07</span> Documents administratifs</button>
+          <div class="group-content" hidden>
+            <p class="epic-description">Consultation et téléchargement des documents utiles à la gestion, comme les RIB et les contrats.</p>
+            <p class="empty">User Stories à définir lors d’un atelier client.</p>
+          </div>
+        </section>
+
+        <section class="group epic">
+          <button class="toggle" type="button" aria-expanded="false"><span class="code">DEV-08</span> Mise à disposition sur les stores</button>
+          <div class="group-content" hidden>
+            <p class="epic-description">Publication de l’application sur l’App Store et Google Play.</p>
+            <p class="empty">User Stories à définir lors d’un atelier client.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== INITIATIVE CREA ===================== -->
+    <section class="group initiative">
+      <button class="toggle" type="button" aria-expanded="false"><span class="code">CREA</span> Identité et communication de lancement</button>
+      <div class="group-content" hidden>
+
+        <section class="group epic">
+          <button class="toggle" type="button" aria-expanded="false"><span class="code">CREA-01</span> Logo</button>
+          <div class="group-content" hidden>
+            <p class="epic-description">Création du logo de Grisbi2B et de ses déclinaisons.</p>
+            <p class="empty">User Stories à définir lors d’un atelier client.</p>
+          </div>
+        </section>
+
+        <section class="group epic">
+          <button class="toggle" type="button" aria-expanded="false"><span class="code">CREA-02</span> Charte graphique</button>
+          <div class="group-content" hidden>
+            <p class="epic-description">Définition des couleurs, typographies et règles d’usage communes à tous les supports de la marque.</p>
+            <p class="empty">User Stories à définir lors d’un atelier client.</p>
+          </div>
+        </section>
+
+        <!-- ===== CREA-03 ===== -->
+        <section class="group epic">
+          <button class="toggle" type="button" aria-expanded="false"><span class="code">CREA-03</span> Spot vidéo</button>
+          <div class="group-content" hidden>
+            <p class="epic-description">Réalisation du spot de lancement diffusé sur le web et de ses déclinaisons.</p>
+            <div class="note">
+              <p><strong>Exigences communes à toutes les US de cette Epic (Definition of Done) :</strong></p>
+              <ul>
+                <li>le logo, les couleurs et les typographies respectent la charte graphique (CREA-02) ; aucun élément graphique n’en sort ;</li>
+                <li>l’application réelle n’est jamais montrée ;</li>
+                <li>aucune marque tierce n’est lisible à l’image (enseignes, vêtements, outils, véhicules) ;</li>
+                <li>les droits à l’image de la comédienne et des figurants, de la voix off et de la musique sont cédés pour une diffusion sur internet, en France, pendant 1 an ;</li>
+                <li>les lieux de tournage font l’objet d’une autorisation écrite ;</li>
+                <li>les badges App Store et Google Play sont utilisés dans leur version officielle, sans modification.</li>
+              </ul>
+            </div>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">CREA-03-1</span> Spot 30 secondes</h4>
+              <p class="accroche">En tant que dirigeant de TPE qui regarde YouTube, je peux voir une courte histoire qui me ressemble et montre la simplicité de Grisbi2B afin de comprendre ce que l’application peut changer pour moi et où la télécharger.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <h5>Diffusion</h5>
+                <p>Publicité diffusée avant les vidéos YouTube, que le spectateur peut passer au bout de 5 secondes. Diffusion pendant 6 semaines à partir de la sortie de l’application sur les stores.</p>
+
+                <h5>Histoire</h5>
+                <p>Claire, gérante d’un atelier de menuiserie, croit avoir perdu sa carte bancaire, la verrouille en un geste depuis son téléphone, puis la retrouve et la déverrouille aussi simplement. Message clé : toute la banque professionnelle tient dans le téléphone, sans agence et sans frais inutiles.</p>
+
+                <h5>Déroulé (durées à 1 seconde près, sauf le packshot)</h5>
+                <div class="table-wrap">
+                  <table>
+                    <thead><tr><th>Séquence</th><th class="nowrap">Temps</th><th>Image</th><th>Son</th><th>Texte à l’écran</th></tr></thead>
+                    <tbody>
+                      <tr><td>1. La perte</td><td class="nowrap">0 – 5 s</td><td>Claire sort d’un rendez-vous client dans une rue animée et cherche sa carte dans son sac puis ses poches, sans la trouver.</td><td>Ambiance de rue, début de la musique.</td><td>Logo en haut à droite dès la 1<sup>re</sup> seconde. « Carte introuvable ? »</td></tr>
+                      <tr><td>2. Le geste</td><td class="nowrap">5 – 12 s</td><td>Elle sort son téléphone. Gros plan : elle bascule l’interrupteur « Carte verrouillée ». Plan sur son visage soulagé.</td><td>VO : « Avec Grisbi2B, votre carte se verrouille en un geste. » Son discret au moment du geste.</td><td>Aucun, hors sous-titres.</td></tr>
+                      <tr><td>3. La découverte</td><td class="nowrap">12 – 19 s</td><td>À l’atelier, elle enfile sa veste de travail et trouve la carte dans la poche. Elle sourit.</td><td>Musique seule.</td><td>Aucun.</td></tr>
+                      <tr><td>4. Le retour</td><td class="nowrap">19 – 25 s</td><td>Elle déverrouille la carte sur son téléphone, puis reprend son travail avec son équipe.</td><td>VO : « Et se déverrouille tout aussi vite. Toute votre banque pro, dans votre poche. »</td><td>Aucun, hors sous-titres.</td></tr>
+                      <tr><td>5. Le packshot</td><td class="nowrap">25 – 30 s</td><td>Fond aux couleurs de la charte : logo, signature, badges App Store et Google Play.</td><td>VO : « Grisbi2B. Sans agence, sans frais inutiles. » Signature sonore en fin.</td><td>« Téléchargez l’application » et mention légale (CREA-03-5).</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h5>Critères d’acceptation</h5>
+                <ul>
+                  <li>Le nom ou le logo de Grisbi2B est visible avant la 5<sup>e</sup> seconde.</li>
+                  <li>Le geste de verrouillage dure moins de 2 secondes à l’écran.</li>
+                  <li>Le packshot dure exactement 5 secondes.</li>
+                </ul>
+
+                <h5>Personnages</h5>
+                <ul>
+                  <li>Claire : une quarantaine d’années, gérante d’un atelier de menuiserie de 8 salariés ; tenue de ville au rendez-vous client, veste de travail à l’atelier.</li>
+                  <li>Deux ou trois figurants jouent les salariés de l’atelier.</li>
+                </ul>
+
+                <h5>Tournage et décors</h5>
+                <ul>
+                  <li>Deux décors : une rue commerçante en journée et un atelier de menuiserie en activité.</li>
+                  <li>Chaque plan est cadré de façon à permettre un recadrage vertical sans perdre l’action principale (nécessaire pour CREA-03-3).</li>
+                </ul>
+
+                <h5>Accessoires</h5>
+                <ul>
+                  <li>Carte bancaire factice aux couleurs de la charte, sans logo de réseau de paiement ni numéro réaliste.</li>
+                  <li>Téléphone sans marque visible. Son écran, incrusté en postproduction, affiche une interface simplifiée : logo Grisbi2B, représentation de la carte et un seul interrupteur « Carte verrouillée ». Carte verrouillée : représentation grisée avec un cadenas.</li>
+                </ul>
+
+                <h5>Voix off et musique</h5>
+                <ul>
+                  <li>Voix off féminine, différente de celle de la comédienne, au ton posé et chaleureux, qui vouvoie le spectateur. Le texte du déroulé ne peut pas être modifié sans validation du client.</li>
+                  <li>Musique originale, rythmée mais non envahissante : la voix off reste parfaitement intelligible. Elle se termine par la signature sonore (CREA-03-6).</li>
+                </ul>
+
+                <h5>Livrable</h5>
+                <p><code>GRISBI2B_SPOT30_16x9.mp4</code>, MP4, 1920 × 1080 (16:9), selon les spécifications de CREA-03-8.</p>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">CREA-03-2</span> Spot 6 secondes</h4>
+              <p class="accroche">En tant que spectateur d’une publicité YouTube que je ne peux pas passer, je peux voir un message très court afin de retenir le nom de la marque sans être agacé.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <p>Cette version vise uniquement la mémorisation du nom. Elle est montée à partir des plans du tournage principal (CREA-03-1), sans nouveau tournage.</p>
+                <div class="table-wrap">
+                  <table>
+                    <thead><tr><th>Séquence</th><th class="nowrap">Temps</th><th>Image</th><th>Son</th><th>Texte à l’écran</th></tr></thead>
+                    <tbody>
+                      <tr><td>1. La perte</td><td class="nowrap">0 – 2 s</td><td>Main de Claire qui fouille une poche vide.</td><td>Musique.</td><td>« Carte introuvable ? »</td></tr>
+                      <tr><td>2. Le geste</td><td class="nowrap">2 – 4 s</td><td>Gros plan sur le verrouillage de la carte.</td><td>Son discret au moment du geste.</td><td>« Verrouillée en un geste. »</td></tr>
+                      <tr><td>3. Le packshot</td><td class="nowrap">4 – 6 s</td><td>Logo et badges App Store et Google Play.</td><td>Signature sonore.</td><td>Signature de marque.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <ul>
+                  <li>Pas de voix off.</li>
+                  <li>La mention légale est affichée en bas de l’écran pendant toute la durée du spot (CREA-03-5).</li>
+                </ul>
+                <h5>Livrable</h5>
+                <p><code>GRISBI2B_SPOT06_16x9.mp4</code>, MP4, 1920 × 1080 (16:9).</p>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">CREA-03-3</span> Spot vertical lisible sans le son</h4>
+              <p class="accroche">En tant qu’utilisateur de LinkedIn sur mobile, je peux comprendre le spot vertical sans activer le son afin de suivre le message en faisant défiler mon fil.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>Reprend le déroulé de la version de 30 secondes (CREA-03-1), remonté au format vertical 9:16 à partir des mêmes images.</li>
+                  <li>Diffusé dans le fil d’actualité LinkedIn, où les vidéos démarrent sans le son.</li>
+                  <li>Les phrases de la voix off sont affichées à l’écran en texte animé aux couleurs de la charte, en plus des sous-titres incrustés.</li>
+                  <li>Tous les textes restent dans la zone centrale de l’écran, pour ne pas être masqués par l’interface de LinkedIn (nom du compte en haut, boutons en bas).</li>
+                  <li>Le packshot est identique à celui de la version de 30 secondes, adapté au format vertical, avec la mention légale.</li>
+                </ul>
+                <h5>Livrable</h5>
+                <p><code>GRISBI2B_SPOT30_9x16.mp4</code>, MP4, 1080 × 1920 (9:16), sous-titres incrustés.</p>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">CREA-03-4</span> Activer les sous-titres</h4>
+              <p class="accroche">En tant que spectateur sourd ou malentendant, je peux activer des sous-titres sur YouTube afin de comprendre la voix off du spot.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>Toute parole prononcée dans le spot de 30 secondes est sous-titrée.</li>
+                  <li>Les sous-titres sont fournis dans un fichier séparé, au format SRT, activable par le spectateur sur YouTube.</li>
+                  <li>Ils reprennent exactement le texte de la voix off du déroulé et sont synchronisés avec elle.</li>
+                </ul>
+                <h5>Livrable</h5>
+                <p><code>GRISBI2B_SPOT30_FR.srt</code></p>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">CREA-03-5</span> Afficher la mention légale</h4>
+              <p class="accroche">En tant que service juridique de Grisbi2B, je peux m’assurer que la mention légale est lisible dans chaque déclinaison afin de respecter la réglementation de la publicité bancaire.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <p>Texte fourni par le service juridique, à reproduire sans modification :</p>
+                <blockquote>Grisbi2B SAS, établissement de crédit agréé. Ouverture de compte soumise à conditions, réservée aux professionnels. Voir conditions sur grisbi2b.fr.</blockquote>
+                <ul>
+                  <li>Version 30 secondes et version verticale : la mention apparaît dans le packshot.</li>
+                  <li>Version 6 secondes : la mention est affichée en bas de l’écran pendant toute la durée du spot.</li>
+                  <li>Elle doit être lisible sur un écran de smartphone : taille de caractère suffisante et contraste conforme à la charte.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">CREA-03-6</span> Créer la signature sonore</h4>
+              <p class="accroche">En tant que responsable communication, je peux disposer d’une signature sonore réutilisable seule afin d’en faire un repère commun à tous les supports de la campagne.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>La signature dure 3 secondes au maximum et est associée à l’apparition du logo.</li>
+                  <li>Elle conclut la musique du spot, dans les trois déclinaisons.</li>
+                  <li>Elle doit pouvoir être utilisée seule dans les autres supports de la campagne, notamment le spot audio des podcasts (CREA-07).</li>
+                  <li>Ses droits sont cédés pour tous les supports de la marque, sans limite de durée.</li>
+                </ul>
+                <h5>Livrable</h5>
+                <p><code>GRISBI2B_SIGNATURE_SONORE.wav</code>, WAV.</p>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">CREA-03-7</span> Créer la miniature YouTube</h4>
+              <p class="accroche">En tant qu’internaute sur YouTube, je peux voir une miniature claire afin d’avoir envie de lancer la vidéo.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>Image fixe représentant le spot, conforme à la charte graphique.</li>
+                  <li>Format JPG, 1280 × 720.</li>
+                </ul>
+                <h5>Livrable</h5>
+                <p><code>GRISBI2B_MINIATURE.jpg</code></p>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">CREA-03-8</span> Livrer des fichiers prêts à diffuser</h4>
+              <p class="accroche">En tant que responsable communication, je peux recevoir les vidéos aux bons formats et correctement nommées afin de les mettre en ligne sans retraitement.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <h5>Spécifications communes à toutes les vidéos</h5>
+                <ul>
+                  <li>MP4 (H.264), 25 images par seconde.</li>
+                  <li>Son stéréo AAC 48 kHz, normalisé à −14 LUFS.</li>
+                </ul>
+                <h5>Liste des livrables</h5>
+                <div class="table-wrap">
+                  <table>
+                    <thead><tr><th>Fichier</th><th>Format</th><th>Résolution</th><th>Nom du fichier</th></tr></thead>
+                    <tbody>
+                      <tr><td>Spot 30 secondes</td><td>MP4</td><td class="nowrap">1920 × 1080</td><td><code>GRISBI2B_SPOT30_16x9.mp4</code></td></tr>
+                      <tr><td>Sous-titres du spot 30 secondes</td><td>SRT</td><td>–</td><td><code>GRISBI2B_SPOT30_FR.srt</code></td></tr>
+                      <tr><td>Spot 6 secondes</td><td>MP4</td><td class="nowrap">1920 × 1080</td><td><code>GRISBI2B_SPOT06_16x9.mp4</code></td></tr>
+                      <tr><td>Spot vertical, sous-titres incrustés</td><td>MP4</td><td class="nowrap">1080 × 1920</td><td><code>GRISBI2B_SPOT30_9x16.mp4</code></td></tr>
+                      <tr><td>Miniature YouTube</td><td>JPG</td><td class="nowrap">1280 × 720</td><td><code>GRISBI2B_MINIATURE.jpg</code></td></tr>
+                      <tr><td>Signature sonore seule</td><td>WAV</td><td>–</td><td><code>GRISBI2B_SIGNATURE_SONORE.wav</code></td></tr>
+                      <tr><td>Master du spot 30 secondes</td><td>MOV (ProRes 422)</td><td class="nowrap">1920 × 1080</td><td><code>GRISBI2B_SPOT30_MASTER.mov</code></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </article>
+
+            <article class="us">
+              <h4 class="us-title"><span class="code">CREA-03-9</span> Conserver un master réutilisable</h4>
+              <p class="accroche">En tant que responsable communication, je peux disposer d’un master sans sous-titres ni mention afin de réutiliser les images dans de futures communications.</p>
+              <button class="toggle" type="button" aria-expanded="false">Description détaillée</button>
+              <div class="details" hidden>
+                <ul>
+                  <li>Master du spot de 30 secondes, sans sous-titres ni mention légale.</li>
+                  <li>Format MOV (ProRes 422), 1920 × 1080, destiné à l’archivage.</li>
+                </ul>
+                <h5>Livrable</h5>
+                <p><code>GRISBI2B_SPOT30_MASTER.mov</code></p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="group epic">
+          <button class="toggle" type="button" aria-expanded="false"><span class="code">CREA-04</span> Bannières web</button>
+          <div class="group-content" hidden>
+            <p class="epic-description">Conception des bannières publicitaires diffusées sur les sites internet.</p>
+            <p class="empty">User Stories à définir lors d’un atelier client.</p>
+          </div>
+        </section>
+
+        <section class="group epic">
+          <button class="toggle" type="button" aria-expanded="false"><span class="code">CREA-05</span> Partenariats avec des créateurs</button>
+          <div class="group-content" hidden>
+            <p class="epic-description">Préparation des collaborations avec des créateurs de contenu spécialisés dans l’entrepreneuriat sur LinkedIn et YouTube.</p>
+            <p class="empty">User Stories à définir lors d’un atelier client.</p>
+          </div>
+        </section>
+
+        <section class="group epic">
+          <button class="toggle" type="button" aria-expanded="false"><span class="code">CREA-06</span> Affichage</button>
+          <div class="group-content" hidden>
+            <p class="epic-description">Conception des affiches diffusées dans les transports des quartiers d’affaires.</p>
+            <p class="empty">User Stories à définir lors d’un atelier client.</p>
+          </div>
+        </section>
+
+        <section class="group epic">
+          <button class="toggle" type="button" aria-expanded="false"><span class="code">CREA-07</span> Spot audio</button>
+          <div class="group-content" hidden>
+            <p class="epic-description">Réalisation du spot diffusé dans les podcasts.</p>
+            <p class="empty">User Stories à définir lors d’un atelier client.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
