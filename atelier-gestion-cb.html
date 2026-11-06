@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grisbi2B – Atelier Gestion CB</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="document">
+    <header class="cover">
+      <div class="cover-title">
+        <p class="cover-label">Projet</p>
+        <h1>Grisbi2B</h1>
+        <p class="cover-subtitle">Atelier Gestion CB</p>
+      </div>
+      <div class="cover-summary">
+        <h2>Résumé</h2>
+        <p>Détail des fonctionnalités concernant la gestion des cartes bancaires</p>
+      </div>
+    </header>
+
+    <section>
+      <h2>1. Introduction</h2>
+      <p>La néo-banque Grisbi2B, spécialisée dans une clientèle professionnelle (entreprises), propose des services à faible coût. Toutes les opérations doivent pouvoir être réalisables au travers d’une application mobile afin de réaliser des économies sur les frais de locaux (pas d’agences) et de salaires (moins de conseillers).</p>
+      <p>Le présent document consigne l’ensemble des décisions prises à l’occasion des ateliers réalisés pour décrire l’aspect “Gestion des cartes bancaires” de l’application.</p>
+    </section>
+
+    <section>
+      <h2>2. Profils et droits d’accès</h2>
+      <p>Trois profils d’utilisateurs ont accès à la gestion des cartes bancaires. Leurs droits sont résumés dans le tableau ci-dessous.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>Titulaire du compte (dirigeant)</th>
+              <th>Collaborateur porteur de carte</th>
+              <th>Utilisateur secondaire (expert-comptable)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Voir les cartes</td><td>Toutes les cartes de l’entreprise</td><td>Ses propres cartes uniquement</td><td>Toutes les cartes de l’entreprise</td></tr>
+            <tr><td>Voir le numéro et la date de validité en clair</td><td>Ses propres cartes uniquement</td><td>Oui</td><td>Non</td></tr>
+            <tr><td>Afficher le code secret</td><td>Ses propres cartes uniquement</td><td>Oui</td><td>Non</td></tr>
+            <tr><td>Consulter les plafonds</td><td>Oui</td><td>Oui</td><td>Oui</td></tr>
+            <tr><td>Augmenter temporairement les plafonds</td><td>Oui</td><td>Non</td><td>Non</td></tr>
+            <tr><td>Verrouiller ou déverrouiller une carte</td><td>Oui</td><td>Oui</td><td>Non</td></tr>
+            <tr><td>Faire opposition</td><td>Oui</td><td>Oui</td><td>Non</td></tr>
+            <tr><td>Consulter la documentation</td><td>Oui</td><td>Oui</td><td>Oui</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Les options auxquelles un utilisateur n’a pas droit ne sont pas affichées. Elles ne doivent pas apparaître grisées, afin de ne pas surcharger l’écran.</p>
+    </section>
+
+    <section>
+      <h2>3. Accès</h2>
+
+      <h3>3.1. Depuis le menu principal</h3>
+      <p>La gestion des cartes bancaires est une partie de l’application toujours accessible depuis les icônes du menu principal, en haut de l’écran. Ouverte de cette façon, elle affiche la première carte du carrousel (voir 4.1).</p>
+
+      <h3>3.2. Depuis une opération sur un compte</h3>
+      <p>La gestion des cartes bancaires peut aussi être accédée depuis une opération listée dans l’historique d’un compte bancaire. Si l’opération a été réalisée à l’aide d’une carte bancaire, une icône permet d’accéder à la gestion des CB avec ladite carte directement sélectionnée.</p>
+      <p>L’icône n’est pas affichée dans deux cas : la carte n’existe plus (carte expirée depuis plus de 90 jours), ou l’utilisateur n’a pas le droit de voir cette carte (voir section 2).</p>
+    </section>
+
+    <section>
+      <h2>4. Liste des cartes bancaires</h2>
+
+      <h3>4.1. Carrousel</h3>
+      <p>La gestion des cartes bancaires affiche les informations et les opérations accessibles pour une carte donnée. En haut de la page, un carrousel permet de changer de carte par un swipe latéral. Des points sous le carrousel indiquent le nombre de cartes et la position de la carte affichée.</p>
+      <p>Les cartes sont classées dans l’ordre suivant : d’abord les cartes de l’utilisateur connecté, puis les autres cartes de l’entreprise par ordre alphabétique du nom du porteur. Les cartes en opposition sont toujours placées en fin de liste.</p>
+
+      <h3>4.2. Informations présentées</h3>
+      <p>Chaque carte est présentée dans le carrousel à l’aide d’un visuel évoquant le support physique. Grisbi2B propose deux gammes : la carte Business Essentiel (visuel bleu) et la carte Business Premium (visuel noir). Le logo Grisbi2B et le logo du réseau de paiement figurent sur le visuel.</p>
+      <p>En dessous sont indiqués le nom du porteur, le numéro de carte et la date de fin de validité. Par défaut, le numéro n’affiche que ses 4 derniers chiffres (•••• •••• •••• 1234) et la date est masquée (••/••).</p>
+      <p>Une icône en forme d’œil permet d’afficher ces informations en entier, après une authentification forte (voir section 6). Elles restent visibles 30 secondes, ou jusqu’à ce que l’utilisateur quitte l’écran ou change de carte. Lorsque le numéro est visible, un bouton permet de le copier ; un message « Numéro copié » confirme l’action.</p>
+
+      <h3>4.3. Statuts</h3>
+      <p>Une carte peut avoir l’un des statuts suivants, affiché sous forme de badge au-dessus du visuel :</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Statut</th><th>Condition</th><th>Affichage</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Active</td><td>Cas normal</td><td>Aucun badge</td></tr>
+            <tr><td>Expire bientôt</td><td>Date de fin de validité dans moins de 60 jours</td><td>Badge orange « Expire bientôt »</td></tr>
+            <tr><td>Verrouillée</td><td>Verrouillage temporaire activé (voir 5.3)</td><td>Visuel grisé, badge « Verrouillée » avec un cadenas</td></tr>
+            <tr><td>En opposition</td><td>Opposition réalisée (voir 5.4)</td><td>Visuel grisé, badge rouge « En opposition »</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Une carte en opposition reste visible 90 jours dans le carrousel, puis disparaît. Aucune opération n’est possible sur elle, à l’exception de la consultation de la documentation et de la commande d’une carte de remplacement (voir 5.4).</p>
+
+      <h3>4.4. Aucune carte</h3>
+      <p>Si l’utilisateur n’a accès à aucune carte, l’écran affiche le message « Aucune carte n’est associée à votre accès ».</p>
+    </section>
+
+    <section>
+      <h2>5. Opérations sur une carte</h2>
+      <p>En plus de permettre de sélectionner une carte et d’en obtenir les informations, l’écran propose un certain nombre d’opérations, décrites ci-dessous.</p>
+
+      <h3>5.1. Affichage du code secret</h3>
+      <p>Une option permet de demander l’affichage du code secret. Cela nécessite de passer par une authentification forte. Le code s’affiche sur une nouvelle vue, en grands caractères, pendant 6 secondes. Un compte à rebours visible indique le temps restant.</p>
+      <p>Au-delà de ce délai, le code est masqué et un bouton « Afficher à nouveau » permet de le réafficher 6 secondes supplémentaires. Pendant les 2 minutes qui suivent l’authentification, ce bouton ne redemande pas d’authentification ; ensuite, il en demande une nouvelle.</p>
+      <p>Par sécurité, les captures d’écran sont bloquées sur cette vue, et le code est immédiatement masqué si l’application passe en arrière-plan. Un bouton en haut de la vue permet de revenir à la vue principale.</p>
+
+      <h3>5.2. Plafonds</h3>
+      <p><strong>Vue principale des plafonds.</strong> Une option permet d’accéder à une vue de gestion des plafonds de la carte. Cette vue présente les deux plafonds principaux (paiements et retraits en France), chacun avec une jauge. Sous chaque jauge sont indiqués le montant utilisé, le plafond et la période concernée (exemple : « 1 250 € utilisés sur 3 000 € – 30 jours glissants »).</p>
+      <p>La couleur de la jauge dépend du taux d’utilisation : verte en dessous de 70 %, orange entre 70 et 90 %, rouge au-delà de 90 %.</p>
+      <p><strong>Vue détaillée.</strong> Un bouton sous les jauges permet d’accéder à une vue détaillée présentant les quatre plafonds de la carte, avec les mêmes jauges. Les plafonds par défaut sont les suivants :</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Plafond</th><th>Période</th><th>Business Essentiel</th><th>Business Premium</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Paiements en France</td><td>30 jours glissants</td><td class="nowrap">3 000 €</td><td class="nowrap">10 000 €</td></tr>
+            <tr><td>Retraits en France</td><td>7 jours glissants</td><td class="nowrap">500 €</td><td class="nowrap">1 500 €</td></tr>
+            <tr><td>Paiements à l’étranger</td><td>30 jours glissants</td><td class="nowrap">1 500 €</td><td class="nowrap">5 000 €</td></tr>
+            <tr><td>Retraits à l’étranger</td><td>7 jours glissants</td><td class="nowrap">300 €</td><td class="nowrap">1 000 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Sur chacune de ces deux vues, un bouton en haut permet de revenir à la vue précédente, et un bouton en bas propose d’augmenter temporairement les plafonds de la carte.</p>
+      <p><strong>Augmentation temporaire.</strong> Si l’on demande à augmenter temporairement les plafonds, une nouvelle vue propose deux niveaux : +50 % ou +100 % sur l’ensemble des plafonds de la carte. Elle rappelle combien d’augmentations sont encore possibles sur l’année civile (3 au maximum) et indique que l’augmentation durera 30 jours.</p>
+      <p>Un bouton en haut de la vue permet d’annuler. Un bouton en bas permet de confirmer, ce qui nécessite une authentification forte. Une fois l’augmentation confirmée, l’application revient à la vue des plafonds, qui affiche les nouveaux montants. L’augmentation s’applique immédiatement, et les plafonds reviennent automatiquement à leur niveau habituel au bout de 30 jours.</p>
+      <p>Une seule augmentation peut être active à la fois. Pendant une augmentation, le bouton d’augmentation est remplacé par le texte « Augmentation active jusqu’au JJ/MM/AAAA ». Lorsque les 3 augmentations de l’année ont été utilisées, le bouton est désactivé et accompagné du message « Vous avez utilisé vos 3 augmentations pour cette année ».</p>
+
+      <h3>5.3. Verrouillages</h3>
+      <p>La vue principale propose trois toggle switchs :</p>
+      <ul>
+        <li>« Verrouiller la carte » : bloque toutes les opérations de la carte ;</li>
+        <li>« Bloquer les paiements à distance » : bloque uniquement les paiements sur internet, par téléphone et les abonnements ;</li>
+        <li>« Bloquer l’étranger » : bloque uniquement les paiements et retraits à l’étranger.</li>
+      </ul>
+      <p>L’effet de chaque switch est immédiat. Activer un blocage ne demande pas d’authentification, afin de pouvoir réagir vite en cas de doute. En revanche, désactiver un blocage demande une authentification forte. Chaque changement est confirmé par un court message en bas de l’écran (exemple : « Carte verrouillée »).</p>
+      <p>Lorsque la carte est entièrement verrouillée, les deux autres switchs sont désactivés et grisés. Ils conservent leur position, qui s’appliquera de nouveau au déverrouillage.</p>
+
+      <h3>5.4. Opposition</h3>
+      <p>Un bouton rouge « Faire opposition », placé sous les switchs, permet de faire opposition sur la carte. L’opposition se déroule en quatre étapes :</p>
+      <ol>
+        <li><strong>Rappel.</strong> Une fenêtre rappelle que l’opposition est définitive et qu’un verrouillage temporaire est possible. Elle propose deux boutons : « Verrouiller plutôt » (qui active le verrouillage et ferme la fenêtre) et « Continuer l’opposition ».</li>
+        <li><strong>Motif.</strong> L’utilisateur choisit un motif parmi : perte, vol, utilisation frauduleuse. En cas de vol ou d’utilisation frauduleuse, un message rappelle qu’il est nécessaire de déposer plainte.</li>
+        <li><strong>Authentification forte.</strong></li>
+        <li><strong>Confirmation.</strong> Une vue confirme l’opposition et indique sa date, son heure et un numéro de référence. La carte passe au statut « En opposition ».</li>
+      </ol>
+      <p>La vue de confirmation propose de commander une carte de remplacement, de la même gamme. Elle rappelle l’adresse de l’entreprise, à laquelle la carte sera envoyée (cette adresse n’est pas modifiable ici), et le délai de réception de 5 jours ouvrés. La commande est gratuite. Si l’utilisateur choisit « Plus tard », un bouton « Commander une carte de remplacement » reste disponible sur la carte en opposition.</p>
+
+      <h3>5.5. Documentation</h3>
+      <p>Enfin, trois liens en bas de page permettent d’accéder à la documentation de la carte :</p>
+      <ul>
+        <li>« Assurance et assistance » : document PDF propre à la gamme de la carte ;</li>
+        <li>« Caractéristiques de la carte » : document PDF propre à la gamme de la carte ;</li>
+        <li>« Questions fréquentes » : page du site de Grisbi2B.</li>
+      </ul>
+      <p>Les documents PDF s’ouvrent dans une visionneuse intégrée à l’application, avec un bouton de partage permettant de les enregistrer ou de les envoyer. La page de questions fréquentes s’ouvre dans un navigateur intégré, sans quitter l’application.</p>
+    </section>
+
+    <section>
+      <h2>6. Authentification forte</h2>
+      <p>L’authentification forte utilise la biométrie du téléphone (empreinte digitale ou reconnaissance faciale) lorsqu’elle est activée. À défaut, l’utilisateur saisit son code personnel à 6 chiffres, choisi lors de l’activation de l’application.</p>
+      <p>Une authentification n’est valable que pour l’action demandée, sauf l’exception prévue pour l’affichage du code secret (voir 5.1). Après 3 échecs, l’action est annulée et l’utilisateur revient à l’écran précédent. Après 5 échecs dans la même journée, l’utilisateur est déconnecté et doit réactiver son accès.</p>
+    </section>
+
+    <section>
+      <h2>7. Notifications</h2>
+      <p>Le porteur de la carte reçoit une notification sur son téléphone dans les cas suivants :</p>
+      <ul>
+        <li>verrouillage ou déverrouillage de la carte, et activation ou désactivation d’un blocage partiel ;</li>
+        <li>opposition sur la carte ;</li>
+        <li>début d’une augmentation temporaire des plafonds, puis 3 jours avant sa fin ;</li>
+        <li>plafond utilisé à plus de 90 % (une seule notification par période) ;</li>
+        <li>carte expirant dans 60 jours.</li>
+      </ul>
+      <p>Si l’action a été réalisée par un autre utilisateur que le porteur (par exemple le dirigeant qui verrouille la carte d’un collaborateur), la notification indique le nom de cet utilisateur.</p>
+    </section>
+
+    <section>
+      <h2>8. Cas d’erreur</h2>
+      <p><strong>Absence de connexion.</strong> Aucune information de carte n’est conservée sur le téléphone. Sans connexion, l’écran affiche le message « Connexion impossible. Vérifiez votre connexion internet. » et un bouton « Réessayer ».</p>
+      <p><strong>Échec d’une action.</strong> Si une action échoue (verrouillage, augmentation de plafond…), l’écran revient à son état précédent : par exemple, le switch reprend sa position initiale. Le message « L’opération n’a pas pu être réalisée. Réessayez dans quelques instants. » s’affiche.</p>
+      <p><strong>Échec d’une opposition.</strong> L’opposition étant urgente, son échec affiche en plus un bouton qui ouvre directement la messagerie de l’application, avec un message pré-rempli indiquant la carte concernée. Le numéro de téléphone du service d’opposition est aussi indiqué.</p>
+      <p><strong>Inactivité.</strong> Après 5 minutes sans action, l’utilisateur est déconnecté et renvoyé à l’écran de connexion.</p>
+    </section>
+
+    <section>
+      <h2>9. Exigences générales</h2>
+      <p><strong>Plateformes.</strong> La gestion des cartes fonctionne sur iOS 17 et versions suivantes, et sur Android 11 et versions suivantes.</p>
+      <p><strong>Performance.</strong> Sur une connexion 4G, la vue principale s’affiche en moins de 2 secondes. Les actions (verrouillage, augmentation de plafond…) sont confirmées en moins de 3 secondes.</p>
+      <p><strong>Sécurité.</strong> Toutes les actions sensibles (affichage des informations en clair, affichage du code secret, modification des plafonds, verrouillages, opposition) sont enregistrées côté serveur avec la date, l’heure, l’utilisateur et la carte concernée.</p>
+      <p><strong>Accessibilité.</strong> L’écran est utilisable avec les lecteurs d’écran des téléphones (VoiceOver sur iOS, TalkBack sur Android). Chaque bouton, switch et jauge possède un libellé lu à voix haute ; une jauge énonce le montant utilisé et le plafond. Les textes respectent la taille de police choisie dans les réglages du téléphone. Aucune information n’est portée uniquement par la couleur : les jauges affichent toujours les montants, et les statuts sont toujours écrits en toutes lettres.</p>
+    </section>
+  </main>
+</body>
+</html>
